@@ -6,6 +6,7 @@
     height:60px;
     background-color: grey;
     width: 100%;
+    z-index:1000;
 }
 .nav-title{
     height: 100%;
@@ -47,7 +48,7 @@
     margin-right: 30px;
 }
 
-@media (max-width:600px){
+@media (max-width:650px){
     .navlinks{
         display:none;
     }
