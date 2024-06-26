@@ -8,11 +8,14 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import React, { useState } from "react";
 
 function App() {
-  const [expenses, setExpenses] = useState([]);
+  const [expenses, setExpenses] = useState(() => {
+    const savedExpenses = localStorage.getItem('expenses');
+    return savedExpenses ? JSON.parse(savedExpenses) : [];
+  })
   useEffect(() => {
     localStorage.setItem("expenses", JSON.stringify(expenses));
   }, [expenses]);
-
+   
   return (
     <div className="app-page">
       <Router>

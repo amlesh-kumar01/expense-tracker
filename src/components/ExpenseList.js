@@ -7,21 +7,25 @@ const ExpenseList = ({ expenses, setExpenses }) => {
   const [editingAmount, setEditingAmount] = useState('');
   const [filter, setFilter] = useState('');
 
+  //to store the expenses locally
   useEffect(() => {
     localStorage.setItem('expenses', JSON.stringify(expenses));
   }, [expenses]);
 
+  //to delete the expenses
   const deleteExpense = (index) => {
     const updatedExpenses = expenses.filter((_, i) => i !== index);//here _ represent that the variable is unused
     setExpenses(updatedExpenses);
   };
 
+  // to edit the expenses
   const editExpense = (index) => {
     setEditingIndex(index);
     setEditingDescription(expenses[index].description);
     setEditingAmount(expenses[index].amount);
   };
 
+  // to save the edit
   const saveEdit = () => {
     const updatedExpenses = expenses.map((expense, index) => {
       if (index === editingIndex) {
@@ -35,15 +39,18 @@ const ExpenseList = ({ expenses, setExpenses }) => {
     setEditingAmount('');
   };
 
+  //to filter expense according to different category
   const filteredExpenses = filter
     ? expenses.filter((expense) => expense.category === filter)
     : expenses;
 
+  // to calculate the total expenses of the filtered expenses
   const totalAmount = filteredExpenses.reduce((total, expense) => total + parseFloat(expense.amount), 0);
 
   return (
     <div className="expense-list">
       <h2>Expense List</h2>
+
       <div className="filter">
         <label>
           Filter by Category:
@@ -55,6 +62,7 @@ const ExpenseList = ({ expenses, setExpenses }) => {
           </select>
         </label>
       </div>
+
       <ul>
         {filteredExpenses.map((expense, index) => (
           <li key={index} className="expense-item">
@@ -85,9 +93,11 @@ const ExpenseList = ({ expenses, setExpenses }) => {
           </li>
         ))}
       </ul>
+
       <div className="total-amount">
         Total Amount: ₹{totalAmount.toFixed(2)}
       </div>
+      
     </div>
   );
 };
