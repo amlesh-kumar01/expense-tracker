@@ -18,16 +18,16 @@ export default function Navbar() {
         <div className="hamburger-menu">
           <ul className="hamburger-links">
             <li>
-              {/* <a href="./HeroSection.js">Home</a> */}
-              <Link to="/home">Home</Link>
+              {/* <a href="#hero-section">Home</a> */}
+              <Link to="/">Home</Link>
             </li>
             <li>
-              {/* <a href="./AddExpenseFrom.js">Add Expense</a> */}
-              <Link to="/add-expense">Add Expense</Link>
+              <a href="#expense-form">Add Expense</a>
+              {/* <Link to="/add-expense">Add Expense</Link> */}
             </li>
             <li>
-              {/* <a href="/AddExpenseList.js">Expense List</a> */}
-              <Link to="/expense-list">Expense List</Link>
+              <a href="#expense-list">Expense List</a>
+              {/* <Link to="/expense-list">Expense List</Link> */}
             </li>
             <li>
               <Link to="/track">Track</Link>
@@ -43,7 +43,8 @@ export default function Navbar() {
       <div className="navbar">
         <div className="nav-title">
           <img src="images/nav-logo.png" alt="nav-logo" className="nav-logo" />
-          <p>BudgetBuddy</p>
+          <Link to="/" className="title-link"><p>BudgetBuddy</p></Link>
+
         </div>
         <img
           src={`images/toggle-menu-icon${show ? "-cross" : ""}.png`}
@@ -54,16 +55,16 @@ export default function Navbar() {
         />
         <ul className={"navlinks"}>
           <li>
-            {/* <a href="/HeroSection.js">Home</a> */}
-            <Link to="/home">Home</Link>
+            {/* <a href="#hero-section">Home</a> */}
+            <Link to="/">Home</Link>
           </li>
           <li>
-            <Link to="/add-expense">Add Expense</Link>
-            {/* <a href="/AddExpenseForm.js">Add Expense</a> */}
+            <a href="#expense-form">Add Expense</a>
+            {/* <Link to="/add-expense">Add Expense</Link> */}
           </li>
           <li>
-            <Link to="/expense-list">Expense List</Link>
-            {/* <a href="/AddExpenseList.js">Expense List</a> */}
+            <a href="#expense-list">Expense List</a>
+            {/* <Link to="/expense-list">Expense List</Link> */}
           </li>
           <li>
             <Link to="/track">Track</Link>

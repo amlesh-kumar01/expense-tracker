@@ -36,7 +36,7 @@ const AddExpenseForm = ({ expenses, setExpenses }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} id='expense-form'>
       <div>
         <label>
           Description:

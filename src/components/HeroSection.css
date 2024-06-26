@@ -24,7 +24,7 @@
     animation: fadeInLeft 1.5s ease-in-out;
   }
   
-  .hero-button {
+  /* .hero-button {
     padding: 10px 20px;
     font-size: 1rem;
     color: white;
@@ -32,7 +32,22 @@
     border: none;
     cursor: pointer;
     animation: fadeInLeft 2s ease-in-out;
-  }
+  } */
+  .track-link {
+    font-size: 1.2rem;
+    color: white;
+    text-decoration: none;
+    border: 2px solid #007bff;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    background-color: #007bff;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.track-link:hover {
+    background-color: white;
+    color: #007bff;
+}
   
   .hero-image img {
     max-width: 100%;
@@ -58,7 +73,6 @@
     }
   }
   
-  /* Animations */
   @keyframes fadeInLeft {
     from {
       opacity: 0;

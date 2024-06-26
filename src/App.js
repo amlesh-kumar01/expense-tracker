@@ -1,11 +1,12 @@
-import "./App.css";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import React, { useState } from "react";
 import { useEffect } from "react";
+import "./App.css";
 import Navbar from "./components/Navbar";
 import HeroSection from "./components/HeroSection";
 import AddExpenseForm from "./components/AddExpenseForm";
 import ExpenseList from "./components/ExpenseList";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import React, { useState } from "react";
+import NotFound from "./components/Custom404";
 
 function App() {
   const [expenses, setExpenses] = useState(() => {
@@ -26,8 +27,8 @@ function App() {
               <>
                 <Navbar />
                 <HeroSection />
-                {/* <AddExpenseForm expenses={expenses} setExpenses={setExpenses} />
-                <ExpenseList expenses={expenses} setExpenses={setExpenses} /> */}
+                <AddExpenseForm expenses={expenses} setExpenses={setExpenses} />
+                <ExpenseList expenses={expenses} setExpenses={setExpenses} />
               </>
             }
           />
@@ -68,6 +69,14 @@ function App() {
                 <p style={{ height: "60px", margin: 0 }}></p>
                 <AddExpenseForm expenses={expenses} setExpenses={setExpenses} />
                 <ExpenseList expenses={expenses} setExpenses={setExpenses} />
+              </>
+            }
+          />
+          <Route
+            path="/*"
+            element={
+              <>
+                <NotFound/>
               </>
             }
           />

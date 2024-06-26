@@ -48,7 +48,7 @@ const ExpenseList = ({ expenses, setExpenses }) => {
   const totalAmount = filteredExpenses.reduce((total, expense) => total + parseFloat(expense.amount), 0);
 
   return (
-    <div className="expense-list">
+    <div className="expense-list" id='expense-list'>
       <h2>Expense List</h2>
 
       <div className="filter">

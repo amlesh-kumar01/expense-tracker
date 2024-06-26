@@ -12,11 +12,22 @@
     height: 100%;
     display: flex;
     align-items: center;
+    margin:0;
 }
 .nav-title p{
     font-weight: bolder;
     margin:0;
     font-size: 1.4em;
+}
+.title-link{
+    text-decoration: none;
+    color: #333;
+    display: flex;
+    justify-content: center;
+}
+.title-link:hover{
+    color:lightblue;
+    transition: color 0.3s ease;
 }
 .nav-logo{
     height: 80%;
@@ -37,9 +48,10 @@
   color: #333;
   font-weight: bold;
   transition: color 0.3s ease;
+  font-size: 1.2em;
 }
 .navlinks a:hover {
-  color: #0074d9;
+  color: lightblue;
 }
 .toggle-icon{
     display:none;
@@ -48,7 +60,7 @@
     margin-right: 30px;
 }
 
-@media (max-width:650px){
+@media (max-width:700px){
     .navlinks{
         display:none;
     }
@@ -56,7 +68,7 @@
         display: block;
     }
     .hamburger-menu{
-        position:absolute;
+        position:fixed;
         top:60px;
         right:0px;
         background-color: grey;
