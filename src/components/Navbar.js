@@ -43,13 +43,13 @@ export default function Navbar() {
       <div className="navbar">
         <div className="nav-title">
           <img src="images/nav-logo.png" alt="nav-logo" className="nav-logo" />
-          <Link to="/" className="title-link"><p>BudgetBuddy</p></Link>
+          <Link to="/home" className="title-link"><p>BudgetBuddy</p></Link>
 
         </div>
         <img
           src={`images/toggle-menu-icon${show ? "-cross" : ""}.png`}
           alt="toggle-menu-icon"
-          width="40px"
+          width="30px"
           className="toggle-icon"
           onClick={showHamburger}
         />
@@ -59,12 +59,12 @@ export default function Navbar() {
             <Link to="/">Home</Link>
           </li>
           <li>
-            {/* <a href="#expense-form">Add Expense</a> */}
-            <Link to="/add-expense">Add Expense</Link>
+            <a href="#expense-form">Add Expense</a>
+            {/* <Link to="/add-expense">Add Expense</Link> */}
           </li>
           <li>
-            {/* <a href="#expense-list">Expense List</a> */}
-            <Link to="/expense-list">Expense List</Link>
+            <a href="#expense-list">Expense List</a>
+            {/* <Link to="/expense-list">Expense List</Link> */}
           </li>
           <li>
             <Link to="/track">Track</Link>

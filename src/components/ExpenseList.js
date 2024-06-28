@@ -48,7 +48,7 @@ const ExpenseList = ({ expenses, setExpenses }) => {
     ? expenses.filter((expense) => expense.category === filter)
     : expenses;
 
-  // to calculate the total expenses of the filtered expenses
+  // to calculate the total amount of the filtered expenses
   const totalAmount = filteredExpenses.reduce(
     (total, expense) => total + parseFloat(expense.amount),
     0
@@ -80,31 +80,43 @@ const ExpenseList = ({ expenses, setExpenses }) => {
                   value={editingDescription}
                   onChange={(e) => setEditingDescription(e.target.value)}
                 />
-                
-                  <input
-                    type="number"
-                    value={editingAmount}
-                    onChange={(e) => setEditingAmount(e.target.value)}
-                  />
-                
+
+                <input
+                  type="number"
+                  value={editingAmount}
+                  onChange={(e) => setEditingAmount(e.target.value)}
+                />
+
                 <span>{new Date(expense.date).toLocaleDateString()}</span>
+
                 <span>{expense.category}</span>
+
                 <button onClick={() => deleteExpense(index)}>
-                  <img src="/images/delete.png" alt="" height="100%" />
+                  <img
+                    src="/images/delete.png"
+                    alt=""
+                    height="60%"
+                  />
                 </button>
+
                 <button onClick={saveEdit}>Save</button>
               </div>
             ) : (
               <div className="list-item-contents">
                 <span>{expense.description}</span>
+
                 <span>₹{expense.amount}</span>
+
                 <span>{new Date(expense.date).toLocaleDateString()}</span>
+
                 <span>{expense.category}</span>
+
                 <button onClick={() => deleteExpense(index)}>
-                  <img src="/images/delete.png" alt="" height="100%" />
+                  <img src="/images/delete.png" alt="" height="60%" />
                 </button>
+
                 <button onClick={() => editExpense(index)}>
-                  <img src="/images/edit.png" alt="" height="100%" />
+                  <img src="/images/edit.png" alt="" height="60%" />
                 </button>
               </div>
             )}
@@ -112,9 +124,9 @@ const ExpenseList = ({ expenses, setExpenses }) => {
         ))}
       </ul>
 
-      <div className="total-amount">
+      <h3 className="total-amount">
         Total Amount: ₹{totalAmount.toFixed(2)}
-      </div>
+      </h3>
     </div>
   );
 };

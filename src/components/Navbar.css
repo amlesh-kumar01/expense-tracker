@@ -56,8 +56,12 @@
 .toggle-icon{
     display:none;
     cursor:pointer;
-    border:2px solid black;
+    /* border:2px solid black; */
     margin-right: 30px;
+    transition: all 0.15s;
+}
+.toggle-icon:hover{
+    background:rgba(239, 240, 238, 0.221);
 }
 
 @media (max-width:700px){

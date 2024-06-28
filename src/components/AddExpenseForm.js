@@ -70,6 +70,7 @@ const AddExpenseForm = ({ expenses, setExpenses }) => {
             Amount:
             <input
               type="number"
+              name="totalAmount"
               value={amount}
               onChange={(event) => setAmount(event.target.value)}
             />
