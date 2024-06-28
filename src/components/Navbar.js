@@ -43,7 +43,7 @@ export default function Navbar() {
       <div className="navbar">
         <div className="nav-title">
           <img src="images/nav-logo.png" alt="nav-logo" className="nav-logo" />
-          <Link to="/home" className="title-link"><p>BudgetBuddy</p></Link>
+          <a href="#hero-section" className="title-link"><p>BudgetBuddy</p></a>
 
         </div>
         <img
