@@ -1,76 +1,91 @@
-import React, { useState, useEffect } from 'react';
-import './AddExpenseForm.css';
+import React, { useState, useEffect } from "react";
+import "./AddExpenseForm.css";
 
 const AddExpenseForm = ({ expenses, setExpenses }) => {
-  
-  const [description, setDescription] = useState('');
-  const [amount, setAmount] = useState('');
-  const [category, setCategory] = useState('');
-  
+  //initializing the state to store values
+  const [description, setDescription] = useState("");
+  const [amount, setAmount] = useState("");
+  const [category, setCategory] = useState("");
+
   //storing the expenses on local storage
   useEffect(() => {
-    localStorage.setItem('expenses', JSON.stringify(expenses));
+    localStorage.setItem("expenses", JSON.stringify(expenses));
   }, [expenses]);
 
+  // to add the submitted data to the array expenses
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (description && amount && category) {
+    if (isFormValid()) {
       const newExpense = {
         description,
         amount: parseFloat(amount),
         category,
-        date: new Date().toISOString()
+        date: new Date().toISOString(),
       };
       const updatedExpenses = [...expenses, newExpense];
       setExpenses(updatedExpenses);
 
       // Clear the form
-      setDescription('');
-      setAmount('');
-      setCategory('');
+      setDescription("");
+      setAmount("");
+      setCategory("");
     }
   };
 
-  const isFormValid = () => {
-    return description && amount && category;
-  };
+  // to check if all the boxes is filled in the form or not
+  const isFormValid = () => description && amount && category;
 
   return (
-    <form onSubmit={handleSubmit} id='expense-form'>
-      <div>
-        <label>
-          Description:
-          <input 
-            type="text" 
-            value={description} 
-            onChange={(e) => setDescription(e.target.value)} 
-          />
-        </label>
+    <form onSubmit={handleSubmit} id="expense-form" className="expense-form">
+      <h1 className="form-title">Expense Form</h1>
+      <div className="form-elements">
+        <div className="form-element">
+          <label className="form-element-label">
+            Category:
+            <select
+              name="expenseCategory"
+              value={category}
+              onChange={(event) => setCategory(event.target.value)}
+            >
+              <option value="">Select category</option>
+              <option value="stationary">Stationary</option>
+              <option value="food">Food</option>
+              <option value="transportation">Transportation</option>
+            </select>
+          </label>
+        </div>
+        <div className="form-element">
+          <label className="form-element-label">
+            Description:
+            <input
+              name="expenseDescription"
+              type="text"
+              value={description}
+              onChange={(event) => setDescription(event.target.value)}
+            />
+          </label>
+        </div>
+        <div className="form-element">
+          <label className="form-element-label">
+            Amount:
+            <input
+              type="number"
+              value={amount}
+              onChange={(event) => setAmount(event.target.value)}
+            />
+          </label>
+        </div>
+
+        <div className="form-element">
+        <button
+          type="submit"
+          disabled={!isFormValid()}
+          className="form-submit"
+        >
+          Add Expense
+        </button>
+        </div>
       </div>
-      <div>
-        <label>
-          Amount:
-          <input 
-            type="number" 
-            value={amount} 
-            onChange={(e) => setAmount(e.target.value)} 
-          />
-        </label>
-      </div>
-      <div>
-        <label>
-          Category:
-          <select value={category} onChange={(e) => setCategory(e.target.value)}>
-            <option value="">Select category</option>
-            <option value="stationary">Stationary</option>
-            <option value="food">Food</option>
-            <option value="transportation">Transportation</option>
-          </select>
-        </label>
-      </div>
-      <button type="submit" disabled={!isFormValid()}>
-        Add Expense
-      </button>
     </form>
   );
 };

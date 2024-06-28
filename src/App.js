@@ -46,7 +46,7 @@ function App() {
             element={
               <>
                 <Navbar />
-                <p style={{ height: "60px", marginTop: "0" }}></p>
+                <p style={{ height: "60px", margin: "0" }}></p>
                 <AddExpenseForm expenses={expenses} setExpenses={setExpenses} />
               </>
             }

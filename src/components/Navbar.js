@@ -59,12 +59,12 @@ export default function Navbar() {
             <Link to="/">Home</Link>
           </li>
           <li>
-            <a href="#expense-form">Add Expense</a>
-            {/* <Link to="/add-expense">Add Expense</Link> */}
+            {/* <a href="#expense-form">Add Expense</a> */}
+            <Link to="/add-expense">Add Expense</Link>
           </li>
           <li>
-            <a href="#expense-list">Expense List</a>
-            {/* <Link to="/expense-list">Expense List</Link> */}
+            {/* <a href="#expense-list">Expense List</a> */}
+            <Link to="/expense-list">Expense List</Link>
           </li>
           <li>
             <Link to="/track">Track</Link>

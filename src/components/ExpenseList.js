@@ -1,20 +1,20 @@
-import React, { useState, useEffect } from 'react';
-import './ExpenseList.css'; // Import the CSS file
+import React, { useState, useEffect } from "react";
+import "./ExpenseList.css"; // Import the CSS file
 
 const ExpenseList = ({ expenses, setExpenses }) => {
   const [editingIndex, setEditingIndex] = useState(null);
-  const [editingDescription, setEditingDescription] = useState('');
-  const [editingAmount, setEditingAmount] = useState('');
-  const [filter, setFilter] = useState('');
+  const [editingDescription, setEditingDescription] = useState("");
+  const [editingAmount, setEditingAmount] = useState("");
+  const [filter, setFilter] = useState("");
 
   //to store the expenses locally
   useEffect(() => {
-    localStorage.setItem('expenses', JSON.stringify(expenses));
+    localStorage.setItem("expenses", JSON.stringify(expenses));
   }, [expenses]);
 
   //to delete the expenses
   const deleteExpense = (index) => {
-    const updatedExpenses = expenses.filter((_, i) => i !== index);//here _ represent that the variable is unused
+    const updatedExpenses = expenses.filter((_, i) => i !== index); //here _ represent that the variable is unused
     setExpenses(updatedExpenses);
   };
 
@@ -29,14 +29,18 @@ const ExpenseList = ({ expenses, setExpenses }) => {
   const saveEdit = () => {
     const updatedExpenses = expenses.map((expense, index) => {
       if (index === editingIndex) {
-        return { ...expense, description: editingDescription, amount: editingAmount };
+        return {
+          ...expense,
+          description: editingDescription,
+          amount: editingAmount,
+        };
       }
       return expense;
     });
     setExpenses(updatedExpenses);
     setEditingIndex(null);
-    setEditingDescription('');
-    setEditingAmount('');
+    setEditingDescription("");
+    setEditingAmount("");
   };
 
   //to filter expense according to different category
@@ -45,13 +49,16 @@ const ExpenseList = ({ expenses, setExpenses }) => {
     : expenses;
 
   // to calculate the total expenses of the filtered expenses
-  const totalAmount = filteredExpenses.reduce((total, expense) => total + parseFloat(expense.amount), 0);
+  const totalAmount = filteredExpenses.reduce(
+    (total, expense) => total + parseFloat(expense.amount),
+    0
+  );
 
   return (
-    <div className="expense-list" id='expense-list'>
-      <h2>Expense List</h2>
+    <div className="expense-list" id="expense-list">
+      <h1 className="list-title">Expense List</h1>
 
-      <div className="filter">
+      <div className="filter-list">
         <label>
           Filter by Category:
           <select value={filter} onChange={(e) => setFilter(e.target.value)}>
@@ -63,32 +70,43 @@ const ExpenseList = ({ expenses, setExpenses }) => {
         </label>
       </div>
 
-      <ul>
+      <ul className="expense-item-list">
         {filteredExpenses.map((expense, index) => (
-          <li key={index} className="expense-item">
+          <li key={index} className="list-item">
             {editingIndex === index ? (
-              <>
+              <div className="list-item-contents">
                 <input
                   type="text"
                   value={editingDescription}
                   onChange={(e) => setEditingDescription(e.target.value)}
                 />
-                <input
-                  type="number"
-                  value={editingAmount}
-                  onChange={(e) => setEditingAmount(e.target.value)}
-                />
+                
+                  <input
+                    type="number"
+                    value={editingAmount}
+                    onChange={(e) => setEditingAmount(e.target.value)}
+                  />
+                
+                <span>{new Date(expense.date).toLocaleDateString()}</span>
+                <span>{expense.category}</span>
+                <button onClick={() => deleteExpense(index)}>
+                  <img src="/images/delete.png" alt="" height="100%" />
+                </button>
                 <button onClick={saveEdit}>Save</button>
-              </>
+              </div>
             ) : (
-              <>
+              <div className="list-item-contents">
                 <span>{expense.description}</span>
                 <span>₹{expense.amount}</span>
                 <span>{new Date(expense.date).toLocaleDateString()}</span>
                 <span>{expense.category}</span>
-                <button onClick={() => deleteExpense(index)}>Delete</button>
-                <button onClick={() => editExpense(index)}>Edit</button>
-              </>
+                <button onClick={() => deleteExpense(index)}>
+                  <img src="/images/delete.png" alt="" height="100%" />
+                </button>
+                <button onClick={() => editExpense(index)}>
+                  <img src="/images/edit.png" alt="" height="100%" />
+                </button>
+              </div>
             )}
           </li>
         ))}
@@ -97,7 +115,6 @@ const ExpenseList = ({ expenses, setExpenses }) => {
       <div className="total-amount">
         Total Amount: ₹{totalAmount.toFixed(2)}
       </div>
-      
     </div>
   );
 };
