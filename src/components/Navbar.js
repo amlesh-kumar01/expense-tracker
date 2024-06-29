@@ -42,12 +42,12 @@ export default function Navbar() {
     <nav>
       <div className="navbar">
         <div className="nav-title">
-          <img src="images/nav-logo.png" alt="nav-logo" className="nav-logo" />
+          <img src="/images/nav-logo.png" alt="nav-logo" className="nav-logo" />
           <a href="#hero-section" className="title-link"><p>BudgetBuddy</p></a>
 
         </div>
         <img
-          src={`images/toggle-menu-icon${show ? "-cross" : ""}.png`}
+          src={`/images/toggle-menu-icon${show ? "-cross" : ""}.png`}
           alt="toggle-menu-icon"
           width="30px"
           className="toggle-icon"
