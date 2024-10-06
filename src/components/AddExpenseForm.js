@@ -2,17 +2,21 @@ import React, { useState, useEffect } from "react";
 import "./AddExpenseForm.css";
 
 const AddExpenseForm = ({ expenses, setExpenses }) => {
-  //initializing the state to store values
+  // Initializing the state to store values
   const [description, setDescription] = useState("");
   const [amount, setAmount] = useState("");
   const [category, setCategory] = useState("");
 
-  //storing the expenses on local storage
+  // Storing the expenses in local storage
   useEffect(() => {
-    localStorage.setItem("expenses", JSON.stringify(expenses));
+    try {
+      localStorage.setItem("expenses", JSON.stringify(expenses));
+    } catch (error) {
+      console.error("Failed to save expenses to local storage:", error);
+    }
   }, [expenses]);
 
-  // to add the submitted data to the array expenses
+  // To add the submitted data to the array expenses
   const handleSubmit = (e) => {
     e.preventDefault();
     if (isFormValid()) {
@@ -32,8 +36,13 @@ const AddExpenseForm = ({ expenses, setExpenses }) => {
     }
   };
 
-  // to check if all the boxes is filled in the form or not
-  const isFormValid = () => description && amount && category;
+  // To check if all the boxes are filled in the form and amount is a valid number
+  const isFormValid = () => {
+    return description.trim() !== "" && 
+           amount.trim() !== "" && 
+           !isNaN(amount) && 
+           category.trim() !== "";
+  };
 
   return (
     <form onSubmit={handleSubmit} id="expense-form" className="expense-form">
